@@ -34,19 +34,20 @@ target(csslint: "Run CssLint on the projects CSS files.")
 
   def cssLint = "lib"+File.separator+"csslint-rhino.js"
 
-  println 'test'
   def files = ant.fileset(dir: 'web-app/css')
 
 
+
   files.each{ file ->
-    println "Checking "+file
-    ant.java(className:'org.mozilla.javascript.tools.shell.Main',fork:true,clonevm:true ){
+    println "Checking: "+file
+    ant.path(id: "grails.compile.classpath", compileClasspath)
+    ant.java(className:'org.mozilla.javascript.tools.shell.Main',fork:true,classpathref: 'grails.compile.classpath'){
 //      permissions{
 //        grant(class:'java.util.PropertyPermission', name:'read' )
 //      }
 //      permissions()
-//          {
-//            grant(class:'java.util.PropertyPermission', name:'read' )
+//          {    //This will work but stop after processing one file no need to fork
+//            grant(class:'java.security.AllPermission' )
 //            grant(class:'java.lang.RuntimePermission', name:'exitVM')
 //
 //          }
@@ -59,6 +60,7 @@ target(csslint: "Run CssLint on the projects CSS files.")
       arg(line: '--errors=ids,important')
       arg(line:  '--format=lint-xml')
     }
+    println "finished"
   }
 
 }
