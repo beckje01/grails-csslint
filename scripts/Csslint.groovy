@@ -11,7 +11,6 @@ target(csslint: "Run CssLint on the projects CSS files.") {
 	def configClassName = getBindingValueOrDefault('configClassname', 'BuildConfig')
 	def config = loadConfig(configClassName)
 
-	println config
 
 	def includes = ['web-app/css/**/*.css']
 	if (config.includes) {
@@ -31,7 +30,6 @@ target(csslint: "Run CssLint on the projects CSS files.") {
 
 
 	def cssLint = pluginDir.file.path + File.separator + "lib" + File.separator + "csslint-rhino.js"
-	//TODO test this when plugin is installed.
 	def files = ant.fileset(dir: '.', includes: includes.join(','))
 
 	def warnings = 'box-model,floats'

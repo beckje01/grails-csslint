@@ -58,4 +58,4 @@ grails.project.dependency.resolution = {
 }
 
 csslint.warnings = "ids"
-csslint.errors = "important"
+csslint.errors = "important,font-sizes"
