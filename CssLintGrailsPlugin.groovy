@@ -1,64 +1,63 @@
-class CssLintGrailsPlugin
-{
-  // the plugin version
-  def version = "0.1"
-  // the version or versions of Grails the plugin is designed for
-  def grailsVersion = "1.3.7 > *"
-  // the other plugins this plugin depends on
-  def dependsOn = [:]
-  // resources that are excluded from plugin packaging
-  def pluginExcludes = [
-      "grails-app/views/error.gsp"
-  ]
+class CssLintGrailsPlugin {
+	// the plugin version
+	def version = "0.1"
+	// the version or versions of Grails the plugin is designed for
+	def grailsVersion = "1.3.7 > *"
+	// the other plugins this plugin depends on
+	def dependsOn = [:]
+	// resources that are excluded from plugin packaging
+	def pluginExcludes = [
+		"grails-app/views/error.gsp"
+	]
 
-  def scopes = [excludes: 'war']
+	def scopes = [excludes: 'war']
 
-  def title = "CssLint for Grails" // Headline display name of the plugin
-  def author = "Jeff Beck"
-  def authorEmail = "beckje01@gmail.com"
-  def description = '''\
-Brief summary/description of the plugin.
-'''//TODO add summary
+	def title = "CssLint for Grails"
 
-  // URL to the plugin's documentation
-  def documentation = "http://grails.org/plugin/css-lint"
+	def author = "Jeff Beck"
+	def authorEmail = "beckje01@gmail.com"
+	def description = '''\
+Allows the user to run csslint on their css files.'''
 
-  // Extra (optional) plugin metadata
 
-  def license = "APACHE"
+	def documentation = "http://grails.org/plugin/css-lint"
 
-  // Details of company behind the plugin (if there is one)
-  //    def organization = [ name: "My Company", url: "http://www.my-company.com/" ]
+	// Extra (optional) plugin metadata
 
-  // Any additional developers beyond the author specified above.
-  def developers = [[:]]
+	def license = "APACHE"
 
-  // Location of the plugin's issue tracker.
-  def issueManagement = [system: "github", url: "https://github.com/beckje01/grails-csslint/issues"]
+	// Details of company behind the plugin (if there is one)
+	//    def organization = [ name: "My Company", url: "http://www.my-company.com/" ]
 
-  // Online location of the plugin's browseable source code.
-  def scm = [url: "https://github.com/beckje01/grails-csslint"]
+	// Any additional developers beyond the author specified above.
+	def developers = [[:]]
 
-  def doWithWebDescriptor = { xml ->
-  }
+	// Location of the plugin's issue tracker.
+	def issueManagement = [system: "github", url: "https://github.com/beckje01/grails-csslint/issues"]
 
-  def doWithSpring = {
-  }
+	// Online location of the plugin's browseable source code.
+	def scm = [url: "https://github.com/beckje01/grails-csslint"]
 
-  def doWithDynamicMethods = { ctx ->
-  }
+	def doWithWebDescriptor = { xml ->
+	}
 
-  def doWithApplicationContext = { applicationContext ->
-  }
+	def doWithSpring = {
+	}
 
-  def onChange = { event ->
+	def doWithDynamicMethods = { ctx ->
+	}
 
-  }
+	def doWithApplicationContext = { applicationContext ->
+	}
 
-  def onConfigChange = { event ->
+	def onChange = { event ->
 
-  }
+	}
 
-  def onShutdown = { event ->
-  }
+	def onConfigChange = { event ->
+
+	}
+
+	def onShutdown = { event ->
+	}
 }
