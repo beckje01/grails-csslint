@@ -2,15 +2,16 @@ import grails.util.GrailsUtil
 import org.codehaus.groovy.grails.plugins.GrailsPluginUtils
 
 
-includeTargets << grailsScript("_GrailsInit")
+includeTargets << grailsScript('_GrailsCompile')
 
 target(csslint: "Run CssLint on the projects CSS files.") {
-
+	depends(compile)
 	parseArguments()
 
 	def configClassName = getBindingValueOrDefault('configClassname', 'BuildConfig')
 	def config = loadConfig(configClassName)
 
+	println config
 
 	def includes = ['web-app/css/**/*.css']
 	if (config.includes) {
@@ -76,8 +77,10 @@ private getBindingValueOrDefault(String varName, Object defaultValue) {
 private ConfigObject loadConfig(String className) {
 	def classLoader = Thread.currentThread().contextClassLoader
 	classLoader.addURL(new File(classesDirPath).toURL())
+	println new File(classesDirPath)
 
 	try {
+		def conf = new ConfigSlurper(GrailsUtil.environment).parse(classLoader.loadClass(className))
 		return new ConfigSlurper(GrailsUtil.environment).parse(classLoader.loadClass(className)).csslint
 	}
 	catch (ClassNotFoundException e) {

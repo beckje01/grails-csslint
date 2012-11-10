@@ -56,3 +56,6 @@ grails.project.dependency.resolution = {
         compile ':cache:1.0.0'
     }
 }
+
+csslint.warnings = "ids"
+csslint.errors = "important"

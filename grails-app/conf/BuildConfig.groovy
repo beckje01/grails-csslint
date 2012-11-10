@@ -26,3 +26,5 @@ grails.project.dependency.resolution = {
         }
     }
 }
+
+
