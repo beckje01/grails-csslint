@@ -20,7 +20,7 @@ class CssLintGrailsPlugin {
 Allows the user to run csslint on their css files.'''
 
 
-	def documentation = "http://grails.org/plugin/css-lint"
+	def documentation = "https://github.com/beckje01/grails-csslint"
 
 	// Extra (optional) plugin metadata
 
