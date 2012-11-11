@@ -1,16 +1,13 @@
 import grails.util.GrailsUtil
 import org.codehaus.groovy.grails.plugins.GrailsPluginUtils
 
-
 includeTargets << grailsScript('_GrailsCompile')
 
 target(csslint: "Run CssLint on the projects CSS files.") {
-	depends(compile)
-	parseArguments()
+	depends(compile, parseArguments)
 
 	def configClassName = getBindingValueOrDefault('configClassname', 'BuildConfig')
 	def config = loadConfig(configClassName)
-
 
 	def includes = ['web-app/css/**/*.css']
 	if (config.includes) {
@@ -20,21 +17,16 @@ target(csslint: "Run CssLint on the projects CSS files.") {
 		else if (config.includes instanceof String) {
 			includes = [config.includes]
 		}
-
 	}
-
-
 
 	def pluginDir = GrailsPluginUtils.pluginInfos.find { it.name == 'css-lint' }.pluginDir
 
-
-
-	def cssLint = pluginDir.file.path + File.separator + "lib" + File.separator + "csslint-rhino.js"
+	String cssLint = pluginDir.file.path + File.separator + "lib" + File.separator + "csslint-rhino.js"
 	def files = ant.fileset(dir: '.', includes: includes.join(','))
 
-	def warnings = 'box-model,floats'
-	def errors = 'ids,important'
-	def format = 'lint-xml'
+	String warnings = 'box-model,floats'
+	String errors = 'ids,important'
+	String format = 'lint-xml'
 
 	if (config.warnings instanceof String) {
 		warnings = config.warnings
@@ -44,7 +36,7 @@ target(csslint: "Run CssLint on the projects CSS files.") {
 		errors = config.errors
 	}
 
-	if(config.format instanceof String) {
+	if (config.format instanceof String) {
 		format = config.format
 	}
 
@@ -63,9 +55,7 @@ target(csslint: "Run CssLint on the projects CSS files.") {
 		arg(line: '--errors=' + errors) //What should be errors
 		arg(line: '--format=' + format)
 	}
-
 }
-
 
 private getBindingValueOrDefault(String varName, Object defaultValue) {
 	def variables = getBinding().getVariables()
