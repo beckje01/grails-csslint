@@ -1,30 +1,24 @@
-grails.project.class.dir = "target/classes"
-grails.project.test.class.dir = "target/test-classes"
-grails.project.test.reports.dir = "target/test-reports"
+grails.project.work.dir = 'target'
+grails.project.source.level = 1.6
 
 grails.project.dependency.resolution = {
-    inherits("global") {
 
-    }
-    log "warn" // log level of Ivy resolver, either 'error', 'warn', 'info', 'debug' or 'verbose'
-    repositories {
-        grailsCentral()
+	inherits 'global'
+	log 'warn'
 
-        mavenCentral()
-    }
-    dependencies {
-      compile 'org.mozilla:rhino:1.7R3'
-    }
+	repositories {
+		grailsCentral()
+		mavenLocal()
+		mavenCentral()
+	}
 
-    plugins {
+	dependencies {
+		compile 'org.mozilla:rhino:1.7R3'
+	}
 
-
-			build(":tomcat:$grailsVersion",
-              ":release:2.0.3",
-              ":rest-client-builder:1.0.2") {
-            export = false
-        }
-    }
+	plugins {
+		build(':release:2.0.4', ':rest-client-builder:1.0.2') {
+			export = false
+		}
+	}
 }
-
-
